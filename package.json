@@ -1,0 +1,22 @@
+{
+  "name": "createjs",
+  "version": "1.0.2",
+  "description": "let's start",
+  "main": "index.js",
+  "scripts": {
+    "test": "start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shubhamkadlag996/createjs-shubham.git"
+  },
+  "keywords": [
+    "shubhamk"
+  ],
+  "author": "Shubham Kadlag <shubhamkadlag996@gmail.com> (localhost:8800/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shubhamkadlag996/createjs-shubham/issues"
+  },
+  "homepage": "https://github.com/shubhamkadlag996/createjs-shubham#readme"
+}
