@@ -5,7 +5,7 @@
   "main": ".src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack --mode development --watch",
+    "start": "BABEL_ENV=app WEBPACK_ENV=dev webpack-dev-server --config webpack.dev.js --hot --progress --bail",
     "build": "webpack --mode production",
     "lint": "eslint --ignore-path .gitignore ."
   },
@@ -16,13 +16,15 @@
   "keywords": [
     "shubhamk"
   ],
-  "author": "Shubham Kadlag <shubhamkadlag996@gmail.com> (localhost:8800/)",
+  "author": "Shubham Kadlag <shubhamkadlag996@gmail.com> (localhost:8081/)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/shubhamkadlag996/createjs-shubham/issues"
   },
   "homepage": "https://github.com/shubhamkadlag996/createjs-shubham#readme",
-  "dependencies": {},
+  "dependencies": {
+    "jquery": "^3.4.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.5.4",
     "@babel/preset-env": "^7.5.4",
@@ -30,12 +32,16 @@
     "createjs-module": "^0.8.3",
     "eslint": "^6.0.1",
     "eslint-config-strongloop": "^2.1.0",
+    "eslint-friendly-formatter": "^4.0.1",
+    "friendly-errors-webpack-plugin": "^1.7.0",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "lodash": "^4.17.14",
     "mini-css-extract-plugin": "^0.7.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.35.3",
-    "webpack-cli": "^3.3.5"
+    "webpack-cli": "^3.3.5",
+    "webpack-dev-server": "^3.7.2",
+    "webpack-merge": "^4.2.1"
   }
 }
