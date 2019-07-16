@@ -1,10 +1,29 @@
 import { _, createjs } from '../processingModules/';
+import FireWorks from './allFSes/FireWorks';
+import MCQs from './MCQs';
+import axios from 'axios';
+let filesArr;
+//-------------------fetching server data--------------------------
+axios.get('http://localhost:3000/api/',{
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+    })
+    .then((response)=>{
+      console.log(response.data);
+      filesArr = response.data;
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+//-------------------------------------------------------------------------------------------
+createjs.Ticker.on("tick", () => {
+  stage.update();
+});
+const stage = new createjs.Stage("myCanvas");
+const screenContainer = new createjs.Container();
+stage.addChild(screenContainer);
+stage.enableMouseOver(); // to use cursor propertise
 
-console.log(_.last([1, 2, 3]));
-var stage = new createjs.Stage("myCanvas");
-var circle = new createjs.Shape();
-circle.graphics.beginFill("DeepSkyBlue").drawCircle(0, 0, 50);
-circle.x = 100;
-circle.y = 100;
-stage.addChild(circle);
-stage.update();
+const mcq = new MCQs({ screenContainer, filesArr });

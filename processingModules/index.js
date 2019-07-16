@@ -1,3 +1,8 @@
-export const _ = require("lodash");
-export const $ = require("jquery");
-export const createjs = require("createjs-module");
+import _ from 'lodash';
+import $ from 'jquery';
+import createjs from 'createjs-module';
+export {
+  _,
+  $,
+  createjs,
+};
