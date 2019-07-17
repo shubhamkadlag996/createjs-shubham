@@ -1,5 +1,4 @@
 import { _, createjs } from '../processingModules/';
-import FireWorks from './allFSes/FireWorks';
 import MCQs from './MCQs';
 import axios from 'axios';
 let filesArr;
@@ -11,8 +10,9 @@ axios.get('http://localhost:3000/api/',{
             }
     })
     .then((response)=>{
-      console.log(response.data);
       filesArr = response.data;
+      _.remove(filesArr, (name) => name === 'index');
+      const mcq = new MCQs({ screenContainer, filesArr });
     })
     .catch((error) => {
         console.log(error);
@@ -25,5 +25,3 @@ const stage = new createjs.Stage("myCanvas");
 const screenContainer = new createjs.Container();
 stage.addChild(screenContainer);
 stage.enableMouseOver(); // to use cursor propertise
-
-const mcq = new MCQs({ screenContainer, filesArr });

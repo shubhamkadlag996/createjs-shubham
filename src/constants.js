@@ -5,3 +5,8 @@ export const SCREEN = {
   width: stage.width,
   height: stage.height,
 };
+
+export const MCQ = {
+  MENUWIDTH: 200,
+  MENUHEIGHT: 50,
+}

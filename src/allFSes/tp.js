@@ -1,1 +1,7 @@
-console.log('hello');
+
+
+export default class tp {
+  constructor() {
+    console.log('tp');
+  }
+}
