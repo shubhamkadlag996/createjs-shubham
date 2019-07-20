@@ -1,5 +1,5 @@
-import { _, createjs } from '../processingModules/';
-import { TimelineMax } from "gsap/TimelineMax";
+import { TimelineMax } from 'gsap/TimelineMax';
+import { _, createjs } from '../processingModules';
 import { SCREEN, MCQ } from './constants';
 import { allFSes } from './allFSes';
 
@@ -7,9 +7,8 @@ const { MENUWIDTH, MENUHEIGHT } = MCQ;
 
 export default class MCQs {
   constructor({ screenContainer, filesArr = 'no any files' }) {
-    _.bindAll(this, [ 'showMenus' ]);
+    _.bindAll(this, 'showMenus');
     this.screenContainer = screenContainer;
-    this.screen = screen;
     this.filesArr = filesArr;
     this.menuCards = [];
     this.menuDisplayed = false;
@@ -27,14 +26,17 @@ export default class MCQs {
     this.menuBar = menuBar;
 
     const rect = new createjs.Shape();
-    rect.graphics.setStrokeStyle(1).beginStroke('red').beginFill("#b99e9e").drawRect(0, 0, MENUWIDTH, MENUHEIGHT);
+    rect.graphics.setStrokeStyle(1).beginStroke('red').beginFill('#b99e9e').drawRect(0, 0, MENUWIDTH, MENUHEIGHT);
     menuBar.addChild(rect);
     this.rect = rect;
 
     // creating triangular shape
     const triang = new createjs.Shape();
     triang.graphics.setStrokeStyle(1).beginFill('#fff').beginStroke('red')
-      .moveTo(0, 0).lineTo(20, 0).lineTo(10, 20).lineTo(0, 0);
+      .moveTo(0, 0)
+      .lineTo(20, 0)
+      .lineTo(10, 20)
+      .lineTo(0, 0);
     triang.x = 170;
     triang.y = 15;
     triang.setBounds(0, 0, 20, 20);
@@ -56,13 +58,13 @@ export default class MCQs {
       this.menuCardsContainer.addChild(container);
 
       const rect = new createjs.Shape();
-      rect.graphics.setStrokeStyle(1).beginStroke('red').beginFill("#b99e9e").drawRect(0, 0, MENUWIDTH, MENUHEIGHT);
+      rect.graphics.setStrokeStyle(1).beginStroke('red').beginFill('#b99e9e').drawRect(0, 0, MENUWIDTH, MENUHEIGHT);
       container.rect = rect;
       container.addChild(rect);
 
-      var text = new createjs.Text(name, "20px Arial", "#e6e1e1");
-      text.textBaseline = "middle";
-      text.textAlign = "center";
+      const text = new createjs.Text(name, '20px Arial', '#e6e1e1');
+      text.textBaseline = 'middle';
+      text.textAlign = 'center';
       text.x = MENUWIDTH / 2;
       text.y = MENUHEIGHT / 2;
       container.addChild(text);
@@ -78,7 +80,7 @@ export default class MCQs {
     });
   }
 
-  showMenus(event) {
+  showMenus() {
     this.enable = false;
     const tl = new TimelineMax({ onComplete: () => { this.enable = true; } });
     let alpha = 1;
@@ -95,7 +97,6 @@ export default class MCQs {
   }
 
   set enable(flag) {
-    this.menuBar.set({ mouseEnabled: flag, mouseChildren: flag })
+    this.menuBar.set({ mouseEnabled: flag, mouseChildren: flag });
   }
-
 }

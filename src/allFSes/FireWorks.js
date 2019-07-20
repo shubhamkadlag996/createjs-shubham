@@ -1,12 +1,11 @@
-import { _, createjs } from '../../processingModules/';
-import { TweenMax } from "gsap/TweenMax";
+import { TweenMax } from 'gsap/TweenMax';
+import { _, createjs } from '../../processingModules';
 import { SCREEN } from '../constants';
 
 export default class FireWorks {
   constructor({ screenContainer }) {
-    _.bindAll(this, [ 'fireOnIt' ]);
+    _.bindAll(this, ['fireOnIt']);
     this.screenContainer = screenContainer;
-    this.screen = screen;
     this.counter = 0;
     this.maxCount = 5;
     this.createInitialBall();
@@ -14,7 +13,7 @@ export default class FireWorks {
 
   createInitialBall() {
     const fire = new createjs.Shape();
-    fire.graphics.beginFill("DeepSkyBlue").drawCircle(0, 0, 20);
+    fire.graphics.beginFill('DeepSkyBlue').drawCircle(0, 0, 20);
     fire.x = SCREEN.width / 2;
     fire.y = SCREEN.height / 2;
     this.screenContainer.addChild(fire);
@@ -36,15 +35,23 @@ export default class FireWorks {
   }
 
   fireIt(event) {
+    const findAngle = (cx, cy, ex, ey) => {
+      const dy = ey - cy;
+      const dx = ex - cx;
+      let theta = Math.atan2(dy, dx);
+      theta *= 180 / Math.PI;
+      return theta;
+    };
+
     for (let i = 0; i < 500; i++) {
       // const shape = event.target.clone();
       const shape = new createjs.Shape();
-      shape.graphics.beginFill("DeepSkyBlue").drawRect(0, 0, 10, 2);
+      shape.graphics.beginFill('DeepSkyBlue').drawRect(0, 0, 10, 2);
       shape.x = event.target.x;
       shape.y = event.target.y;
-      const x = _.random(0, screen.width);
-      const y = _.random(0, screen.height);
-      shape.rotation = this.findAngle(shape.x, shape.y, x, y);
+      const x = _.random(0, SCREEN.width);
+      const y = _.random(0, SCREEN.height);
+      shape.rotation = findAngle(shape.x, shape.y, x, y);
       this.screenContainer.addChild(shape);
       TweenMax.to(shape, 0.8, {
         x,
@@ -59,13 +66,4 @@ export default class FireWorks {
       });
     }
   }
-
-  findAngle(cx, cy, ex, ey) {
-    var dy = ey - cy;
-    var dx = ex - cx;
-    var theta = Math.atan2(dy, dx);
-    theta *= 180 / Math.PI;
-    return theta;
-  }
-
 }
