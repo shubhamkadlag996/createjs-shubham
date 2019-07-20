@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { _, createjs } from '../processingModules';
 import MCQs from './MCQs';
+import ClockHandler from './allFSes/ClockHandler';
 
 const stage = new createjs.Stage('myCanvas');
 createjs.Ticker.on('tick', () => {
@@ -21,7 +22,7 @@ axios.get('http://localhost:3000/api/', {
   .then((response) => {
     filesArr = response.data;
     _.remove(filesArr, name => name === 'index');
-    const mcq = new MCQs({ screenContainer, filesArr });
+    const mcq = new ClockHandler({ screenContainer, filesArr });
   })
   .catch((error) => {
     console.log(error);

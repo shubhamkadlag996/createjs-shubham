@@ -1,7 +1,7 @@
 import FireWorks from './FireWorks';
-import tp from './tp';
+import ClockHandler from './ClockHandler';
 
 export const allFSes = {
   FireWorks,
-  tp,
+  ClockHandler,
 };

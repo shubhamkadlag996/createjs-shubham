@@ -1,4 +1,4 @@
-import { TweenMax } from 'gsap/TweenMax';
+import { TweenMax, TimelineMax } from 'gsap/TweenMax';
 import { _, createjs } from '../../processingModules';
 import { SCREEN } from '../constants';
 
@@ -42,6 +42,15 @@ export default class FireWorks {
       theta *= 180 / Math.PI;
       return theta;
     };
+    const tl = new TimelineMax({
+      onComplete: () => {
+        this.screenContainer.removeChild(shape);
+        if (this.counter === this.maxCount) {
+          this.counter = 0;
+          this.fire.set({ mouseEnabled: true, mouseChildren: true });
+        }
+      },
+    });
 
     for (let i = 0; i < 500; i++) {
       // const shape = event.target.clone();
@@ -53,16 +62,9 @@ export default class FireWorks {
       const y = _.random(0, SCREEN.height);
       shape.rotation = findAngle(shape.x, shape.y, x, y);
       this.screenContainer.addChild(shape);
-      TweenMax.to(shape, 0.8, {
+      tl.to(shape, 0.8, {
         x,
         y,
-        onComplete: () => {
-          this.screenContainer.removeChild(shape);
-          if (this.counter === this.maxCount) {
-            this.counter = 0;
-            this.fire.set({ mouseEnabled: true, mouseChildren: true });
-          }
-        },
       });
     }
   }
